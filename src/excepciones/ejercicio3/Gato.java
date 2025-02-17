@@ -1,6 +1,10 @@
 package excepciones.ejercicio3;
 
-public class Gato {
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Gato implements Serializable {
     private String nombre;
     private int edad;
 
@@ -40,4 +44,19 @@ public class Gato {
                 ", edad=" + edad +
                 '}';
     }
+
+    //Es estático para que sea llamado como un método de clase
+    //Podríamos no devolver las excepciones, pero lo hacemos así
+    // para que las gestione quien llame
+    public static List<Gato> load(String fichero) throws IOException,
+            ClassNotFoundException {
+        ObjectInputStream input = new ObjectInputStream(new FileInputStream(fichero));
+        return (List<Gato>) input.readObject();
+    }
+
+    public static void save(String fichero, List<Gato> gatos) throws IOException{
+        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fichero));
+        output.writeObject(gatos);
+    }
+
 }
