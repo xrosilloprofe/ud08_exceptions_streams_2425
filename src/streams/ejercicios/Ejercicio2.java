@@ -11,6 +11,7 @@ public class Ejercicio2 {
                     new BufferedReader(
                             new FileReader("src/streams/ejercicios/Documentos/numeros.txt"))){
             String numeroFichero;
+
             boolean firstiteration=true;
 
             while((numeroFichero= lector.readLine())!=null){
