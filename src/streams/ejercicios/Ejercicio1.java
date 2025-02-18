@@ -3,6 +3,8 @@ package streams.ejercicios;
 import excepciones.ejercicio3.ExcepcionGatuna;
 import excepciones.ejercicio3.Gato;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,17 @@ public class Ejercicio1 {
         } catch (Exception e){
             e.printStackTrace();
         }
+
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("gatos.csv"))){
+            for(Gato gato:listaGatos) {
+                bufferedWriter.write(gato.getNombre()+";"+gato.getEdad());
+                bufferedWriter.newLine();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+
 
     }
 }
